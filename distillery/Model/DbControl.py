@@ -45,10 +45,12 @@ class DBCntl():
             self.commit()
         else:
             listofDate = str(cursor[3])
-            listofDate  + ','+current_date
-            update = "UPDATE masterData set listOfDate = ? "
-            self.connection.execute(update, (listofDate,))
-            self.commit()
+            r = listofDate.split(',')
+            if current_date not in r:
+                listofDate  = listofDate + ','+current_date
+                update = "UPDATE masterData set listOfDate = ? "
+                self.connection.execute(update, (listofDate,))
+                self.commit()
         self.close()
 
     def open(self):

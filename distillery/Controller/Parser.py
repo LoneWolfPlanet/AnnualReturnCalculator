@@ -144,7 +144,8 @@ class XMLParse():
                         listOfRows.append(row)
 
          writeData.extend(listOfRows)
-         with open(self.csv_path, mode='w') as employee_file:
+         with open(self.csv_path, 'w' ,newline='') as employee_file:
             employee_writer = csv.writer(employee_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
             for line in writeData:
                 employee_writer.writerow(line)
+

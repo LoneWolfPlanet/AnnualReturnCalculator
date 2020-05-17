@@ -1,0 +1,284 @@
+<?xml version="1.0"?>
+    <envelope>
+       <message type="MARKET_DEPTH_A" version="0.1">
+		<market>
+            <pitches>
+                <pitch
+					distillery="CAMERONBRIDGE" categoryName="GRAIN" barrelTypeCode="HHR" bondYear="2019" bondQuarter="Q1" securityId="SPIRIT000264" considerationCurrency="GBP" soldOut="true" >
+						<buyPrices>
+                        <price actionIndicator="B" quantity="6805" limit="1.07" />
+                        <price actionIndicator="B" quantity="3303" limit="1.06" />
+                        <price actionIndicator="B" quantity="400" limit="1.02"/>
+                    </buyPrices>
+                    <sellPrices>
+                        <price actionIndicator="S" quantity="14" limit="1.1" />
+                        <price actionIndicator="S" quantity="6" limit="1.11"/>
+                        <price actionIndicator="S" quantity="49" limit="1.13"/>
+                        <price actionIndicator="S" quantity="2747" limit="1.14"/>
+                        <price actionIndicator="S" quantity="326" limit="1.24"/>
+                    </sellPrices>
+                </pitch>
+                <pitch
+					distillery="CAMERONBRIDGE" categoryName="GRAIN" barrelTypeCode="HHR" bondYear="2019" bondQuarter="Q2" securityId="SPIRIT000264" considerationCurrency="GBP" soldOut="true" >
+						<buyPrices>
+                        <price actionIndicator="B" quantity="6805" limit="1.07" />
+                        <price actionIndicator="B" quantity="3303" limit="1.06" />
+                        <price actionIndicator="B" quantity="400" limit="1.01"/>
+                    </buyPrices>
+                    <sellPrices>
+                        <price actionIndicator="S" quantity="14" limit="1.1" />
+                        <price actionIndicator="S" quantity="6" limit="1.11"/>
+                        <price actionIndicator="S" quantity="49" limit="1.13"/>
+                        <price actionIndicator="S" quantity="2747" limit="1.14"/>
+                        <price actionIndicator="S" quantity="326" limit="1.32"/>
+                    </sellPrices>
+                </pitch>
+				
+                <pitch
+					distillery="CAMERONBRIDGE" categoryName="GRAIN" barrelTypeCode="HHR" bondYear="2019" bondQuarter="Q3" securityId="SPIRIT000264" considerationCurrency="GBP" soldOut="true" >
+						<buyPrices>
+                        <price actionIndicator="B" quantity="6805" limit="1.12" />
+                        <price actionIndicator="B" quantity="3303" limit="1.13" />
+                        <price actionIndicator="B" quantity="400" limit="1.04"/>
+                    </buyPrices>
+                    <sellPrices>
+                        <price actionIndicator="S" quantity="14" limit="1.1" />
+                        <price actionIndicator="S" quantity="6" limit="1.11"/>
+                        <price actionIndicator="S" quantity="49" limit="1.13"/>
+                        <price actionIndicator="S" quantity="2747" limit="1.14"/>
+                        <price actionIndicator="S" quantity="326" limit="1.40"/>
+                    </sellPrices>
+                </pitch>
+                <pitch
+					distillery="CAMERONBRIDGE" categoryName="GRAIN" barrelTypeCode="BBR" bondYear="2017" bondQuarter="Q3" securityId="SPIRIT000264" considerationCurrency="GBP" soldOut="true" >
+						<buyPrices>
+                        <price actionIndicator="B" quantity="6805" limit="1.07" />
+                        <price actionIndicator="B" quantity="3303" limit="1.06" />
+                        <price actionIndicator="B" quantity="400" limit="1.02"/>
+                    </buyPrices>
+                    <sellPrices>
+                        <price actionIndicator="S" quantity="14" limit="1.1" />
+                        <price actionIndicator="S" quantity="6" limit="1.11"/>
+                        <price actionIndicator="S" quantity="49" limit="1.13"/>
+                        <price actionIndicator="S" quantity="2747" limit="1.14"/>
+                        <price actionIndicator="S" quantity="326" limit="1.19"/>
+                    </sellPrices>
+                </pitch>
+				<pitch
+					distillery="CAMERONBRIDGE" categoryName="GRAIN" barrelTypeCode="BBR" bondYear="2018" bondQuarter="Q3" securityId="SPIRIT000264" considerationCurrency="GBP" soldOut="true" >
+						<buyPrices>
+                        <price actionIndicator="B" quantity="6805" limit="1.07" />
+                        <price actionIndicator="B" quantity="3303" limit="1.06" />
+                        <price actionIndicator="B" quantity="400" limit="1.02"/>
+                    </buyPrices>
+                    <sellPrices>
+                        <price actionIndicator="S" quantity="14" limit="1.1" />
+                        <price actionIndicator="S" quantity="6" limit="1.11"/>
+                        <price actionIndicator="S" quantity="49" limit="1.13"/>
+                        <price actionIndicator="S" quantity="2747" limit="1.14"/>
+                        <price actionIndicator="S" quantity="326" limit="1.19"/>
+                    </sellPrices>
+                </pitch>
+				<pitch
+					distillery="CAMERONBRIDGE" categoryName="GRAIN" barrelTypeCode="BBR" bondYear="2019" bondQuarter="Q3" securityId="SPIRIT000264" considerationCurrency="GBP" soldOut="true" >
+						<buyPrices>
+                        <price actionIndicator="B" quantity="6805" limit="1.07" />
+                        <price actionIndicator="B" quantity="3303" limit="1.06" />
+                        <price actionIndicator="B" quantity="400" limit="1.02"/>
+                    </buyPrices>
+                    <sellPrices>
+                        <price actionIndicator="S" quantity="14" limit="1.1" />
+                        <price actionIndicator="S" quantity="6" limit="1.11"/>
+                        <price actionIndicator="S" quantity="49" limit="1.13"/>
+                        <price actionIndicator="S" quantity="2747" limit="1.14"/>
+                        <price actionIndicator="S" quantity="326" limit="1.19"/>
+                    </sellPrices>
+				</pitch>
+            <pitch
+					distillery="INVERGORDON" categoryName="GRAIN" barrelTypeCode="HHR" bondYear="2019" bondQuarter="Q1" securityId="SPIRIT000264" considerationCurrency="GBP" soldOut="true" >
+						<buyPrices>
+                        <price actionIndicator="B" quantity="6805" limit="1.07" />
+                        <price actionIndicator="B" quantity="3303" limit="1.06" />
+                        <price actionIndicator="B" quantity="400" limit="1.02"/>
+                    </buyPrices>
+                    <sellPrices>
+                        <price actionIndicator="S" quantity="14" limit="1.1" />
+                        <price actionIndicator="S" quantity="6" limit="1.11"/>
+                        <price actionIndicator="S" quantity="49" limit="1.13"/>
+                        <price actionIndicator="S" quantity="2747" limit="1.14"/>
+                        <price actionIndicator="S" quantity="326" limit="1.19"/>
+                    </sellPrices>
+                </pitch>
+                <pitch
+					distillery="INVERGORDON" categoryName="GRAIN" barrelTypeCode="HHR" bondYear="2019" bondQuarter="Q2" securityId="SPIRIT000264" considerationCurrency="GBP" soldOut="true" >
+						<buyPrices>
+                        <price actionIndicator="B" quantity="6805" limit="1.07" />
+                        <price actionIndicator="B" quantity="3303" limit="1.06" />
+                        <price actionIndicator="B" quantity="400" limit="1.02"/>
+                    </buyPrices>
+                    <sellPrices>
+                        <price actionIndicator="S" quantity="14" limit="1.1" />
+                        <price actionIndicator="S" quantity="6" limit="1.11"/>
+                        <price actionIndicator="S" quantity="49" limit="1.13"/>
+                        <price actionIndicator="S" quantity="2747" limit="1.14"/>
+                        <price actionIndicator="S" quantity="326" limit="1.19"/>
+                    </sellPrices>
+                </pitch>
+				
+                <pitch
+					distillery="INVERGORDON" categoryName="GRAIN" barrelTypeCode="HHR" bondYear="2019" bondQuarter="Q3" securityId="SPIRIT000264" considerationCurrency="GBP" soldOut="true" >
+						<buyPrices>
+                        <price actionIndicator="B" quantity="6805" limit="1.07" />
+                        <price actionIndicator="B" quantity="3303" limit="1.06" />
+                        <price actionIndicator="B" quantity="400" limit="1.02"/>
+                    </buyPrices>
+                    <sellPrices>
+                        <price actionIndicator="S" quantity="14" limit="1.1" />
+                        <price actionIndicator="S" quantity="6" limit="1.11"/>
+                        <price actionIndicator="S" quantity="49" limit="1.13"/>
+                        <price actionIndicator="S" quantity="2747" limit="1.14"/>
+                        <price actionIndicator="S" quantity="326" limit="1.19"/>
+                    </sellPrices>
+                </pitch>
+                <pitch
+					distillery="INVERGORDON" categoryName="GRAIN" barrelTypeCode="BBR" bondYear="2017" bondQuarter="Q3" securityId="SPIRIT000264" considerationCurrency="GBP" soldOut="true" >
+						<buyPrices>
+                        <price actionIndicator="B" quantity="6805" limit="1.07" />
+                        <price actionIndicator="B" quantity="3303" limit="1.06" />
+                        <price actionIndicator="B" quantity="400" limit="1.02"/>
+                    </buyPrices>
+                    <sellPrices>
+                        <price actionIndicator="S" quantity="14" limit="1.1" />
+                        <price actionIndicator="S" quantity="6" limit="1.11"/>
+                        <price actionIndicator="S" quantity="49" limit="1.13"/>
+                        <price actionIndicator="S" quantity="2747" limit="1.14"/>
+                        <price actionIndicator="S" quantity="326" limit="1.19"/>
+                    </sellPrices>
+                </pitch>
+				<pitch
+					distillery="INVERGORDON" categoryName="GRAIN" barrelTypeCode="BBR" bondYear="2018" bondQuarter="Q3" securityId="SPIRIT000264" considerationCurrency="GBP" soldOut="true" >
+						<buyPrices>
+                        <price actionIndicator="B" quantity="6805" limit="1.07" />
+                        <price actionIndicator="B" quantity="3303" limit="1.06" />
+                        <price actionIndicator="B" quantity="400" limit="1.02"/>
+                    </buyPrices>
+                    <sellPrices>
+                        <price actionIndicator="S" quantity="14" limit="1.1" />
+                        <price actionIndicator="S" quantity="6" limit="1.11"/>
+                        <price actionIndicator="S" quantity="49" limit="1.13"/>
+                        <price actionIndicator="S" quantity="2747" limit="1.14"/>
+                        <price actionIndicator="S" quantity="326" limit="1.19"/>
+                    </sellPrices>
+                </pitch>
+				<pitch
+					distillery="INVERGORDON" categoryName="GRAIN" barrelTypeCode="BBR" bondYear="2019" bondQuarter="Q3" securityId="SPIRIT000264" considerationCurrency="GBP" soldOut="true" >
+						<buyPrices>
+                        <price actionIndicator="B" quantity="6805" limit="1.07" />
+                        <price actionIndicator="B" quantity="3303" limit="1.06" />
+                        <price actionIndicator="B" quantity="400" limit="1.02"/>
+                    </buyPrices>
+                    <sellPrices>
+                        <price actionIndicator="S" quantity="14" limit="1.1" />
+                        <price actionIndicator="S" quantity="6" limit="1.11"/>
+                        <price actionIndicator="S" quantity="49" limit="1.13"/>
+                        <price actionIndicator="S" quantity="2747" limit="1.14"/>
+                        <price actionIndicator="S" quantity="326" limit="1.19"/>
+                    </sellPrices>
+                </pitch>
+
+            <pitch
+					distillery="NORTH_BRITISH" categoryName="GRAIN" barrelTypeCode="HHR" bondYear="2019" bondQuarter="Q1" securityId="SPIRIT000264" considerationCurrency="GBP" soldOut="true" >
+						<buyPrices>
+                        <price actionIndicator="B" quantity="6805" limit="1.07" />
+                        <price actionIndicator="B" quantity="3303" limit="1.06" />
+                        <price actionIndicator="B" quantity="400" limit="1.02"/>
+                    </buyPrices>
+                    <sellPrices>
+                        <price actionIndicator="S" quantity="14" limit="1.1" />
+                        <price actionIndicator="S" quantity="6" limit="1.11"/>
+                        <price actionIndicator="S" quantity="49" limit="1.13"/>
+                        <price actionIndicator="S" quantity="2747" limit="1.14"/>
+                        <price actionIndicator="S" quantity="326" limit="1.19"/>
+                    </sellPrices>
+                </pitch>
+                <pitch
+					distillery="NORTH_BRITISH" categoryName="GRAIN" barrelTypeCode="HHR" bondYear="2019" bondQuarter="Q2" securityId="SPIRIT000264" considerationCurrency="GBP" soldOut="true" >
+						<buyPrices>
+                        <price actionIndicator="B" quantity="6805" limit="1.07" />
+                        <price actionIndicator="B" quantity="3303" limit="1.06" />
+                        <price actionIndicator="B" quantity="400" limit="1.02"/>
+                    </buyPrices>
+                    <sellPrices>
+                        <price actionIndicator="S" quantity="14" limit="1.1" />
+                        <price actionIndicator="S" quantity="6" limit="1.11"/>
+                        <price actionIndicator="S" quantity="49" limit="1.13"/>
+                        <price actionIndicator="S" quantity="2747" limit="1.14"/>
+                        <price actionIndicator="S" quantity="326" limit="1.19"/>
+                    </sellPrices>
+                </pitch>
+				
+                <pitch
+					distillery="NORTH_BRITISH" categoryName="GRAIN" barrelTypeCode="HHR" bondYear="2019" bondQuarter="Q3" securityId="SPIRIT000264" considerationCurrency="GBP" soldOut="true" >
+						<buyPrices>
+                        <price actionIndicator="B" quantity="6805" limit="1.07" />
+                        <price actionIndicator="B" quantity="3303" limit="1.06" />
+                        <price actionIndicator="B" quantity="400" limit="1.02"/>
+                    </buyPrices>
+                    <sellPrices>
+                        <price actionIndicator="S" quantity="14" limit="1.1" />
+                        <price actionIndicator="S" quantity="6" limit="1.11"/>
+                        <price actionIndicator="S" quantity="49" limit="1.13"/>
+                        <price actionIndicator="S" quantity="2747" limit="1.14"/>
+                        <price actionIndicator="S" quantity="326" limit="1.19"/>
+                    </sellPrices>
+                </pitch>
+                <pitch
+					distillery="NORTH_BRITISH" categoryName="GRAIN" barrelTypeCode="BBR" bondYear="2017" bondQuarter="Q3" securityId="SPIRIT000264" considerationCurrency="GBP" soldOut="true" >
+						<buyPrices>
+                        <price actionIndicator="B" quantity="6805" limit="1.07" />
+                        <price actionIndicator="B" quantity="3303" limit="1.06" />
+                        <price actionIndicator="B" quantity="400" limit="1.02"/>
+                    </buyPrices>
+                    <sellPrices>
+                        <price actionIndicator="S" quantity="14" limit="1.1" />
+                        <price actionIndicator="S" quantity="6" limit="1.11"/>
+                        <price actionIndicator="S" quantity="49" limit="1.13"/>
+                        <price actionIndicator="S" quantity="2747" limit="1.14"/>
+                        <price actionIndicator="S" quantity="326" limit="1.19"/>
+                    </sellPrices>
+                </pitch>
+				<pitch
+					distillery="NORTH_BRITISH" categoryName="GRAIN" barrelTypeCode="BBR" bondYear="2018" bondQuarter="Q3" securityId="SPIRIT000264" considerationCurrency="GBP" soldOut="true" >
+						<buyPrices>
+                        <price actionIndicator="B" quantity="6805" limit="1.07" />
+                        <price actionIndicator="B" quantity="3303" limit="1.06" />
+                        <price actionIndicator="B" quantity="400" limit="1.02"/>
+                    </buyPrices>
+                    <sellPrices>
+                        <price actionIndicator="S" quantity="14" limit="1.1" />
+                        <price actionIndicator="S" quantity="6" limit="1.11"/>
+                        <price actionIndicator="S" quantity="49" limit="1.13"/>
+                        <price actionIndicator="S" quantity="2747" limit="1.14"/>
+                        <price actionIndicator="S" quantity="326" limit="1.19"/>
+                    </sellPrices>
+                </pitch>
+				<pitch
+					distillery="NORTH_BRITISH" categoryName="GRAIN" barrelTypeCode="BBR" bondYear="2019" bondQuarter="Q3" securityId="SPIRIT000264" considerationCurrency="GBP" soldOut="true" >
+						<buyPrices>
+                        <price actionIndicator="B" quantity="6805" limit="1.07" />
+                        <price actionIndicator="B" quantity="3303" limit="1.06" />
+                        <price actionIndicator="B" quantity="400" limit="1.02"/>
+                    </buyPrices>
+                    <sellPrices>
+                        <price actionIndicator="S" quantity="14" limit="1.1" />
+                        <price actionIndicator="S" quantity="6" limit="1.11"/>
+                        <price actionIndicator="S" quantity="49" limit="1.13"/>
+                        <price actionIndicator="S" quantity="2747" limit="1.14"/>
+                        <price actionIndicator="S" quantity="326" limit="1.19"/>
+                    </sellPrices>
+                </pitch>
+			</pitches>
+		</market>
+	  </message>
+</envelope>
+	
