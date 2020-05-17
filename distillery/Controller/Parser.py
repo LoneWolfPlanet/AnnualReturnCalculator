@@ -25,9 +25,9 @@ class XMLParse():
              ur = url
          response = None
          try:
-            # response = requests.get(ur)
-             response = TestData()
-             response.getData('./tests/TestCase/test_case_01.txt')
+             response = requests.get(ur)
+             #response = TestData()
+             #response.getData('./tests/TestCase/test_case_01.txt')
 
          except Exception as e:
                 print('Error in requesting to url : ' + str(ur))
