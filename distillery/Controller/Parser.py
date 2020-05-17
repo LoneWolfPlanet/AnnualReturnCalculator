@@ -7,6 +7,7 @@ from datetime import date
 import os
 from Model.Model import  *
 from Model.DbControl import *
+from tests.TestCase.Test import  *
 
 class XMLParse():
 
@@ -24,21 +25,26 @@ class XMLParse():
              ur = url
          response = None
          try:
-             response = requests.get(ur)
+            # response = requests.get(ur)
+             response = TestData()
+             response.getData('./tests/TestCase/test_case_01.txt')
 
          except Exception as e:
                 print('Error in requesting to url : ' + str(ur))
 
-         #try:
-         if response:
+         try:
+            if response:
                 dict_market = xmltodict.parse(response.text)['envelope']['message']['market']['pitches']
                 for elem in dict_market['pitch']:
                     self.groupByGDP(elem)
-                self.compute()
-                self.updateDB()
-                self.updateCSV()
-         #except Exception as e:
-          #   print('Error during parsing of xml data....')
+         except Exception as e:
+          print('Error during parsing of xml data. error : ' + str(e))
+         try:
+             self.compute()
+             self.updateDB()
+             self.updateCSV()
+         except Exception as e:
+             print('Error during computation. error : ' + str(e))
 
      def groupByGDP(self, element):
           if(element['@considerationCurrency'] == 'GBP'):
@@ -66,6 +72,7 @@ class XMLParse():
                  if len(barrel.listOfPitch) < 2:
                      continue
 
+                 divisor = 0
                  for index in  range(len(barrel.listOfPitch)):
                      for pos  in  range(index + 1,len(barrel.listOfPitch) ):
                           old = None
@@ -77,13 +84,14 @@ class XMLParse():
                               young = (barrel.listOfPitch)[index]
                               old =  (barrel.listOfPitch)[pos]
 
-                          diff_price = old.highestSalePrice - young.lowestBuyPrice
-                          diff_time = old.integerAge - young.integerAge
-                          result = 0
-                          if diff_time != 0:
-                              result = result +  diff_price/diff_time
-
-                 barrel.average = result/len(barrel.listOfPitch)
+                          if  old.highestSalePrice > 0 or young.lowestBuyPrice > 0:
+                            diff_price = old.highestSalePrice - young.lowestBuyPrice
+                            diff_time =  young.integerAge - old.integerAge
+                            if diff_time != 0:
+                                result = result +  diff_price/diff_time
+                            divisor = divisor + 1
+                 if divisor  > 0:
+                    barrel.average = result/divisor
 
 
      def updateDB(self):
@@ -109,7 +117,6 @@ class XMLParse():
                  f = open('./output/log.csv' , 'a+')
                  f.close()
                  break
-
          self.db.open()
          master = self.db.getMasterData()
          result = self.getListOfDate(str(master[3]))
@@ -137,10 +144,12 @@ class XMLParse():
                                 data = ' '
                                 for ave in averages:
                                     if result[index] ==  str(ave[3]):
-                                        data = str(ave[2])
+                                        if float(ave[2]) > 0:
+                                            data = str(ave[2])
+                                        else:
+                                            data = ' '
                                         break
                                 row.append(data)
-
                         listOfRows.append(row)
 
          writeData.extend(listOfRows)

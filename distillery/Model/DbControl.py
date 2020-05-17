@@ -67,8 +67,8 @@ class DBCntl():
         distillery_result = self.connection.execute(query ,(distilleryName,)).fetchall()
         if len(distillery_result) > 0:
             for row in distillery_result:
-                    query = 'SELECT * FROM barrelCode where barrelTypeCode =  ? '
-                    barrel_result = self.connection.execute(query, (barrel.key,) ).fetchall()
+                    query = 'SELECT * FROM barrelCode where barrelTypeCode =  ? and  barrelTypeID = ? '
+                    barrel_result = self.connection.execute(query, (barrel.key, str(row[2]),) ).fetchall()
                     if len(barrel_result) > 0:
                             query = 'SELECT * FROM BarrelAverage where barrelTypeCodeID = ?  and  exportDate = ?  and distilleryID  = ? '
                             average_result= self.connection.execute( query, (barrel.key, current_date,  distilleryName, )).fetchall()

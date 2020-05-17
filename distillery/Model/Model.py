@@ -79,18 +79,18 @@ class Pitch():
             print(str(e))
 
         #Parse sellPrices tags
-            try:
-                if element['sellPrices']:
-                    if element['sellPrices']['price']:
-                        for field in element['sellPrices']['price']:
-                            price = Price()
-                            price.set(field)
-                            self.salePriceList.append(price)
-                            if (field['@actionIndicator'].lower() == 's'):
-                                if float(field['@limit']) > self.highestSalePrice:
-                                    self.highestSalePrice = float(field['@limit'])
-            except Exception as e:
-                print(str(e))
+        try:
+            if element['sellPrices']:
+                if element['sellPrices']['price']:
+                    for field in element['sellPrices']['price']:
+                        price = Price()
+                        price.set(field)
+                        self.salePriceList.append(price)
+                        if (field['@actionIndicator'].lower() == 's'):
+                            if float(field['@limit']) > self.highestSalePrice:
+                                self.highestSalePrice = float(field['@limit'])
+        except Exception as e:
+            print(str(e))
 
 class  Price():
 
