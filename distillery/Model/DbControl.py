@@ -100,13 +100,13 @@ class DBCntl():
         query = "SELECT * FROM distillery"
         return self.connection.execute(query).fetchall()
 
-    def getAllBarrelByID(self ,id):
-        query = "SELECT * FROM  barrelCode where  barrelTypeID = ?"
-        return self.connection.execute(query, (id,)).fetchall()
-
-    def getAllAverage(self , key ):
-        query = "SELECT * FROM  BarrelAverage where  barrelTypeCodeID = ?"
+    def getAllBarrelByID(self ,key ):
+        query = "SELECT * FROM  barrelCode where  barrelTypeID = ? "
         return self.connection.execute(query, (key,)).fetchall()
+
+    def getAllAverage(self , barrelCode_id, distillery_id ):
+        query = "SELECT * FROM  BarrelAverage where  barrelTypeCodeID = ? and distilleryID = ?"
+        return self.connection.execute(query, (barrelCode_id,distillery_id, )).fetchall()
 
     def getMasterData(self):
         return self.connection.execute('SELECT * FROM masterData ').fetchone()

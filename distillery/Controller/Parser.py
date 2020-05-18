@@ -8,14 +8,14 @@ import os
 from Model.Model import  *
 from Model.DbControl import *
 from tests.TestCase.Test import  *
-
+from Controller.XMLReader import *
 class XMLParse():
 
      def __init__(self):
          self.url = 'https://www.whiskyinvestdirect.com/view_market_xml.do'
-         self.listOfDistillery = []
          self.csv_path = './Output/Log.csv'
          self.db = DBCntl()
+         self.xml_read = None
 
      def getData(self, url = None):
          ur  = None
@@ -27,71 +27,60 @@ class XMLParse():
          try:
              response = requests.get(ur)
              #response = TestData()
-             #response.getData('./tests/TestCase/test_case_01.txt')
+             #response.getData('./tests/TestCase/test_case_07.txt')
 
          except Exception as e:
                 print('Error in requesting to url : ' + str(ur))
-
+                return
          try:
             if response:
-                dict_market = xmltodict.parse(response.text)['envelope']['message']['market']['pitches']
-                for elem in dict_market['pitch']:
-                    self.groupByGDP(elem)
+                self.xml_read  = XMLReader()
+                self.xml_read .parse(response.text)
          except Exception as e:
-          print('Error during parsing of xml data. error : ' + str(e))
+             print('Error during parsing of xml data. error : ' + str(e))
+             return
+
          try:
              self.compute()
              self.updateDB()
              self.updateCSV()
          except Exception as e:
              print('Error during computation. error : ' + str(e))
+             return
 
-     def groupByGDP(self, element):
-          if(element['@considerationCurrency'] == 'GBP'):
-
-              found = False
-              for distillery in self.listOfDistillery:
-                  if distillery.key ==element['@distillery']:
-                    distillery.add(element)
-                    found = True
-                    break
-
-              if not found:
-                  distillery = Distillery()
-                  distillery.key = element['@distillery']
-                  distillery.add(element)
-                  self.listOfDistillery.append(distillery)
+         print('Succesfully created CSV.....')
 
      def compute(self):
 
-         for distillery in self.listOfDistillery:
-             for barrel in distillery.listBarrelType:
-                 result = 0
+         if self.xml_read:
+            for distillery in self.xml_read.listOfDistillery:
+                for barrel in distillery.listBarrelType:
+                    result = 0
 
-                 #Ignore pitch with no pair
-                 if len(barrel.listOfPitch) < 2:
-                     continue
+                    #Ignore pitch with no pair
+                    if len(barrel.listOfPitch) < 2:
+                        continue
 
-                 divisor = 0
-                 for index in  range(len(barrel.listOfPitch)):
-                     for pos  in  range(index + 1,len(barrel.listOfPitch) ):
-                          old = None
-                          young = None
-                          if (barrel.listOfPitch)[index].integerAge < (barrel.listOfPitch)[pos].integerAge:
-                              old = (barrel.listOfPitch)[index]
-                              young =  (barrel.listOfPitch)[pos]
-                          else:
-                              young = (barrel.listOfPitch)[index]
-                              old =  (barrel.listOfPitch)[pos]
+                    divisor = 0
+                    for index in  range(len(barrel.listOfPitch)):
+                        for pos  in  range(index + 1,len(barrel.listOfPitch) ):
+                            old = None
+                            young = None
+                            if (barrel.listOfPitch)[index].integerAge < (barrel.listOfPitch)[pos].integerAge:
+                                old = (barrel.listOfPitch)[index]
+                                young =  (barrel.listOfPitch)[pos]
+                            else:
+                                young = (barrel.listOfPitch)[index]
+                                old =  (barrel.listOfPitch)[pos]
 
-                          if  old.highestSalePrice > 0 or young.lowestBuyPrice > 0:
-                            diff_price = old.highestSalePrice - young.lowestBuyPrice
-                            diff_time =  young.integerAge - old.integerAge
-                            if diff_time != 0:
-                                result = result +  diff_price/diff_time
-                            divisor = divisor + 1
-                 if divisor  > 0:
-                    barrel.average = result/divisor
+                            if  old.highestSalePrice > 0 or young.lowestBuyPrice > 0:
+                                diff_price = old.highestSalePrice - young.lowestBuyPrice
+                                diff_time =  young.integerAge - old.integerAge
+                                if diff_time != 0:
+                                    result = result +  diff_price/diff_time
+                                divisor = divisor + 1
+                    if divisor  > 0:
+                        barrel.average = result/divisor
 
 
      def updateDB(self):
@@ -99,9 +88,10 @@ class XMLParse():
          current_format = current.strftime('%m/%d/%y')
          self.db.checkIfFreshInstall(current_format)
          self.db.open()
-         for distillery in self.listOfDistillery:
-             for barrel in distillery.listBarrelType:
-                    self.db.search(distillery.key, barrel, current_format)
+         if self.xml_read:
+            for distillery in self.xml_read.listOfDistillery:
+                for barrel in distillery.listBarrelType:
+                        self.db.search(distillery.key, barrel, current_format)
 
          self.db.commit()
          self.db.close()
@@ -138,19 +128,22 @@ class XMLParse():
                         row  = []
                         row.append(str(distillery[1]))
                         row.append(str(barrel[1]))
-                        averages = self.db.getAllAverage(str(barrel[1]))
+                        averages = self.db.getAllAverage(str(barrel[1]),str(distillery[1]) )
                         if len(averages) > 0:
+                            noData = True
                             for index  in range(len(result)) :
                                 data = ' '
                                 for ave in averages:
                                     if result[index] ==  str(ave[3]):
-                                        if float(ave[2]) > 0:
+                                        if float(ave[2]) != 0:
                                             data = str(ave[2])
+                                            noData = False
                                         else:
                                             data = ' '
                                         break
                                 row.append(data)
-                        listOfRows.append(row)
+                            if not noData :
+                             listOfRows.append(row)
 
          writeData.extend(listOfRows)
          with open(self.csv_path, 'w' ,newline='') as employee_file:
