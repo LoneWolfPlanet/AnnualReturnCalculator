@@ -1,6 +1,5 @@
 
 import requests
-import xmltodict
 import json
 import csv
 from datetime import date
@@ -27,7 +26,7 @@ class XMLParse():
          try:
              response = requests.get(ur)
              #response = TestData()
-             #response.getData('./tests/TestCase/test_case_07.txt')
+             #response.getData('./tests/TestCase/test_case_05.txt')
 
          except Exception as e:
                 print('Error in requesting to url : ' + str(ur))
@@ -73,12 +72,13 @@ class XMLParse():
                                 young = (barrel.listOfPitch)[index]
                                 old =  (barrel.listOfPitch)[pos]
 
-                            if  old.highestSalePrice > 0 or young.lowestBuyPrice > 0:
-                                diff_price = old.highestSalePrice - young.lowestBuyPrice
-                                diff_time =  young.integerAge - old.integerAge
-                                if diff_time != 0:
-                                    result = result +  diff_price/diff_time
-                                divisor = divisor + 1
+                            if len(old.salePriceList) > 0 and len(young.buyPriceList) > 0:
+                                if  old.highestSalePrice > 0 or young.lowestBuyPrice > 0:
+                                    diff_price = old.highestSalePrice - young.lowestBuyPrice
+                                    diff_time =  young.integerAge - old.integerAge
+                                    if diff_time != 0:
+                                        result = result +  diff_price/diff_time
+                                    divisor = divisor + 1
                     if divisor  > 0:
                         barrel.average = result/divisor
 

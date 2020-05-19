@@ -25,16 +25,17 @@ class BarrelType():
         self.average = 0.0000000
 
     def add(self,element):
-        exclude = False
+        '''exclude = False
         for el in element.getchildren():
             if el.tag == 'sellPrices' or el.tag == 'buyPrices':
                 if len(el.getchildren()) == 0:
                     exclude = True
                     break
-        if not exclude:
-            pitch = Pitch()
-            pitch.set(element)
-            self.listOfPitch.append(pitch)
+
+        if not exclude: '''
+        pitch = Pitch()
+        pitch.set(element)
+        self.listOfPitch.append(pitch)
 
 
 class Pitch():
