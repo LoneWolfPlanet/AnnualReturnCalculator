@@ -26,7 +26,7 @@ class XMLParse():
          try:
              response = requests.get(ur)
              #response = TestData()
-             #response.getData('./tests/TestCase/test_case_05.txt')
+             #response.getData('./tests/TestCase/test_case_04.txt')
 
          except Exception as e:
                 print('Error in requesting to url : ' + str(ur))
@@ -90,9 +90,16 @@ class XMLParse():
          self.db.open()
          if self.xml_read:
             for distillery in self.xml_read.listOfDistillery:
-                for barrel in distillery.listBarrelType:
-                        self.db.search(distillery.key, barrel, current_format)
 
+                for barrel in distillery.listBarrelType:
+                     lowestSellPrice = 0.00
+                     self.db.search(distillery.key, barrel, current_format)
+                     for pitch in barrel.listOfPitch:
+                         if lowestSellPrice == 0.00:
+                             lowestSellPrice = pitch.lowestBuyPrice
+                         elif pitch.lowestBuyPrice < lowestSellPrice:
+                             lowestSellPrice  = pitch.lowestBuyPrice
+                     self.db.updateSmallestPrice(distillery.key, barrel.key, lowestSellPrice)
          self.db.commit()
          self.db.close()
 
@@ -114,6 +121,7 @@ class XMLParse():
          header = []
          header.append('Distillery')
          header.append('BarrelType')
+         header.append('Lowest Sale')
          for   d in result:
              header.append(d)
          writeData.append(header)
@@ -128,6 +136,10 @@ class XMLParse():
                         row  = []
                         row.append(str(distillery[1]))
                         row.append(str(barrel[1]))
+                        if float(barrel[3]) > 0:
+                            row.append(str(barrel[3]))
+                        else:
+                            row.append(" ")
                         averages = self.db.getAllAverage(str(barrel[1]),str(distillery[1]) )
                         if len(averages) > 0:
                             noData = True

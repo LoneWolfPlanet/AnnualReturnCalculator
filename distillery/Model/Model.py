@@ -25,14 +25,7 @@ class BarrelType():
         self.average = 0.0000000
 
     def add(self,element):
-        '''exclude = False
-        for el in element.getchildren():
-            if el.tag == 'sellPrices' or el.tag == 'buyPrices':
-                if len(el.getchildren()) == 0:
-                    exclude = True
-                    break
 
-        if not exclude: '''
         pitch = Pitch()
         pitch.set(element)
         self.listOfPitch.append(pitch)
@@ -53,6 +46,7 @@ class Pitch():
         self.lowestBuyPrice = 1000000000.00000
         self.highestSalePrice = 0.00000
         self.exclude = False
+        self.overAllLowestSellPrice = 1000000000.00000
 
     def set(self, element):
         self.category = element.attrib['categoryName']
@@ -76,26 +70,26 @@ class Pitch():
 
     def  walkPricesTag(self, element):
          for child in element.getchildren():
-             if child.tag == 'sellPrices':
+             if child.tag == 'buyPrices':
                  for ele in child.getchildren():
                      price = Price()
                      price.set(ele)
                      self.salePriceList.append(price)
-                     self.setPrice(ele, 'sellPrices')
-             elif child.tag == 'buyPrices':
+                     self.setPrice(ele, 'buyPrices')
+             elif child.tag == 'sellPrices':
                  for ele in child.getchildren():
                     price = Price()
                     price.set(ele)
                     self.buyPriceList.append(price)
-                    self.setPrice(ele, 'buyPrices')
+                    self.setPrice(ele, 'sellPrices')
 
     def setPrice(self, element, key):
-        if key == 'sellPrices':
-            if (element.attrib['actionIndicator'].lower() == 's'):
+        if key == 'buyPrices':
+            if (element.attrib['actionIndicator'].lower() == 'b'):
                 if float(element.attrib['limit']) > self.highestSalePrice:
                     self.highestSalePrice = float(element.attrib['limit'])
-        elif key == 'buyPrices':
-            if (element.attrib['actionIndicator'].lower() == 'b'):
+        elif key == 'sellPrices':
+            if (element.attrib['actionIndicator'].lower() == 's'):
                 if float(element.attrib['limit']) < self.lowestBuyPrice:
                     self.lowestBuyPrice = float(element.attrib['limit'])
 

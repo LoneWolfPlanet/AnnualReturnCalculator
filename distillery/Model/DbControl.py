@@ -26,7 +26,7 @@ class DBCntl():
                      ([id] integer PRIMARY KEY autoincrement  ,[distilleryName] text not null , [barrelTypeID] text not null )''')
 
         c.execute('''CREATE TABLE barrelCode
-                     ([id] integer PRIMARY KEY autoincrement ,[barrelTypeCode] text, [barrelTypeID] text )''')
+                     ([id] integer PRIMARY KEY autoincrement ,[barrelTypeCode] text, [barrelTypeID] text, [lowestSellPrice] double, [distilleryName]  text )''')
 
         c.execute('''CREATE TABLE BarrelAverage
                      ([id] integer PRIMARY KEY autoincrement ,[barrelTypeCodeID] text, [averageData] double, [exportDate] text not null , [distilleryID] text )''')
@@ -62,6 +62,10 @@ class DBCntl():
     def close(self):
         self.connection.close()
 
+    def updateSmallestPrice(self, distilleryName, barrelCode , lowestSellPrice):
+        update = "UPDATE barrelCode set lowestSellPrice =  ?  where barrelTypeCode = ? and  distilleryName =  ? "
+        self.connection.execute(update, (lowestSellPrice, barrelCode, distilleryName,))
+
     def search(self, distilleryName, barrel , current_date):
         query = 'SELECT * FROM distillery where distilleryName =  ? '
         distillery_result = self.connection.execute(query ,(distilleryName,)).fetchall()
@@ -80,7 +84,7 @@ class DBCntl():
                                 self.connection.execute(insert ,(barrel.key, barrel.average, current_date, distilleryName, ))
                     else:
                         guid = str(row[2])
-                        self.connection.execute("INSERT INTO barrelCode (barrelTypeCode, barrelTypeID) VALUES (?, ? )",(barrel.key, str(guid),) )
+                        self.connection.execute("INSERT INTO barrelCode (barrelTypeCode, barrelTypeID , distilleryName ) VALUES (?, ? , ?)",(barrel.key, str(guid), distilleryName,) )
                         insert = "INSERT INTO BarrelAverage (barrelTypeCodeID,averageData , exportDate, distilleryID ) VALUES (? , ? , ? , ? )"
                         self.connection.execute(insert, (barrel.key, barrel.average, current_date, distilleryName,))
         else:
@@ -90,8 +94,8 @@ class DBCntl():
         guid = uuid.uuid1()
         insert = "INSERT INTO distillery (distilleryName,barrelTypeID) VALUES (?, ? )"
         self.connection.execute(insert, (name,str(guid),))
-        insert = "INSERT INTO barrelCode (barrelTypeCode,barrelTypeID) VALUES (?, ? )"
-        self.connection.execute(insert, (barrel.key, str(guid),))
+        insert = "INSERT INTO barrelCode (barrelTypeCode,barrelTypeID, distilleryName ) VALUES (?, ? , ?  )"
+        self.connection.execute(insert, (barrel.key, str(guid), name , ))
         insert = "INSERT INTO BarrelAverage (barrelTypeCodeID,averageData , exportDate, distilleryID ) VALUES (? , ? , ? , ? )"
         self.connection.execute(insert, (barrel.key, barrel.average, current_date, name,))
 
